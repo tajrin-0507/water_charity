@@ -4,20 +4,43 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>Water Quest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <div class="container">
+    <img class="brand-logo" src="img/cw_logo_horizontal.png" alt="charity: water">
     <h1>Water Quest</h1>
-    <p class="game-instructions">Collect 20 items to complete the game!</p>
+    <p class="game-instructions">Collect clean water cans and avoid pollution to reach your goal.</p>
+    <div class="difficulty-control">
+      <label for="difficulty">Difficulty</label>
+      <select id="difficulty">
+        <option value="easy">Easy</option>
+        <option value="normal" selected>Normal</option>
+        <option value="hard">Hard</option>
+      </select>
+    </div>
     <div class="stats">
-      <p>Cans Collected: <span id="current-cans">0</span></p>
+      <p>Score: <span id="current-cans">0</span> / <span id="goal">20</span></p>
       <p>Time Left: <span id="timer">30</span>s</p>
     </div>
-    <div id="achievements" class="achievement"></div>
+    <p id="achievements" class="achievement" aria-live="polite">Collect clean water cans and avoid pollution.</p>
     <div class="game-grid"></div>
-    <button id="start-game">Start Game</button>
+    <div class="game-controls">
+      <button id="start-game" type="button">Start Game</button>
+      <button id="reset-game" type="button">Reset</button>
+    </div>
   </div>
+  <footer class="site-footer">
+    <p>
+      <a href="https://www.charitywater.org/" target="_blank" rel="noopener noreferrer">Visit charity: water</a>
+      <span aria-hidden="true"> | </span>
+      <a href="https://www.charitywater.org/donate" target="_blank" rel="noopener noreferrer">Donate</a>
+    </p>
+    <p class="sound-credit">Sound effects from the <a href="https://actions.google.com/sounds/" target="_blank" rel="noopener noreferrer">Google Actions Sound Library</a>.</p>
+  </footer>
   <script src="script.js"></script>
 </body>
 </html>

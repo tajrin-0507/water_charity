@@ -23,7 +23,7 @@ Fonts:
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: Avenir, "Avenir Next", "Proxima Nova", Montserrat, Arial, sans-serif;
   margin: 0;
   padding: 30px;
   background-color: #f0f0f0;
@@ -47,6 +47,13 @@ h1 {
   color: #333;
 }
 
+.brand-logo {
+  display: block;
+  width: min(250px, 85%);
+  height: auto;
+  margin: 0 auto 24px;
+}
+
 h1 img {
   height: 50px;
   margin-right: 15px;
@@ -57,6 +64,24 @@ h1 img {
   font-size: 18px;
   margin-bottom: 30px;
   text-align: center;
+}
+
+.difficulty-control {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  font-weight: bold;
+}
+
+.difficulty-control select {
+  padding: 8px 30px 8px 10px;
+  border: 2px solid #2E9DF7;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #333;
+  font: inherit;
 }
 
 .stats {
@@ -81,6 +106,7 @@ h1 img {
   gap: 15px;
   margin: 0 auto;
   max-width: 500px;
+  margin-bottom: 20px;
 }
 
 .grid-cell {
@@ -96,27 +122,34 @@ h1 img {
   overflow: hidden;
 }
 
-.water-can-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70px;
-  height: 70px;
-  /* Ensure the wrapper is properly centered */
-}
-
 .water-can {
-  width: 100%;
-  height: 100%;
+  width: 72px;
+  height: 72px;
   background-image: url('img/water-can.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
   border-radius: 50%;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
   animation: popUp 0.5s cubic-bezier(0.17, 0.67, 0.34, 2);
   transform-origin: center; /* Ensure scaling happens from the center */
+}
+
+.pollution-obstacle {
+  width: 68px;
+  height: 68px;
+  border: 3px solid #F5402C;
+  border-radius: 50%;
+  background: #fff;
+  color: #F5402C;
+  font-size: 42px;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+  animation: popUp 0.5s cubic-bezier(0.17, 0.67, 0.34, 2);
 }
 
 @keyframes popUp {
@@ -129,8 +162,14 @@ h1 img {
 }
 
 
-button {
-  background-color: #4CAF50;
+.game-controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.game-controls button {
+  background-color: #159A48;
   color: white;
   border: none;
   padding: 12px 24px;
@@ -138,6 +177,98 @@ button {
   border-radius: 8px;
   cursor: pointer;
   display: block;
-  margin: 30px auto 0;
+  margin: 0;
   transition: background-color 0.2s;
+}
+
+.game-controls button:hover:not(:disabled) {
+  background-color: #107a39;
+}
+
+.game-controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+#reset-game {
+  background-color: #2E9DF7;
+}
+
+#reset-game:hover {
+  background-color: #167bc9;
+}
+
+.achievement {
+  min-height: 24px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.score-pop {
+  display: inline-block;
+  animation: score-pop 0.25s ease-out;
+}
+
+@keyframes score-pop {
+  50% { color: #159A48; transform: scale(1.3); }
+}
+
+.confetti-piece {
+  position: fixed;
+  z-index: 10;
+  top: -16px;
+  width: 10px;
+  height: 16px;
+  pointer-events: none;
+  animation-name: confetti-fall;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes confetti-fall {
+  to { transform: translate3d(var(--drift), 110vh, 0) rotate(720deg); }
+}
+
+@media (max-width: 520px) {
+  body { padding: 16px; }
+  .container { margin: 20px auto; padding: 24px 18px; }
+  .stats { gap: 12px; padding: 14px 8px; }
+  .stats p { font-size: 15px; }
+  .game-grid { gap: 9px; }
+  .game-controls button { padding: 12px 18px; }
+}
+
+.site-footer {
+  max-width: 750px;
+  margin: -30px auto 28px;
+  text-align: center;
+  color: #333;
+  font-size: 14px;
+}
+
+.site-footer p {
+  margin: 8px 0;
+}
+
+.site-footer a {
+  color: #167bc9;
+  font-weight: bold;
+}
+
+.site-footer a:hover {
+  color: #159A48;
+}
+
+.sound-credit {
+  font-size: 12px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
 }
